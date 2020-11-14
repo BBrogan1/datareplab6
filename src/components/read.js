@@ -8,15 +8,15 @@ export class Read extends React.Component {
         movies: []
     };
 
-    componentDidMount() {
-        axios.get('https://jsonblob.com/api/jsonblob/520c3b5e-0312-11eb-a6af-cbf00d776032')
-            .then((response) => {
-                this.setState({ movies: response.data.Search })
-            })
-            .catch((error) => {
-                console.log(error)
-            });
-    }
+    componentDidMount(){
+        axios.get('http://localhost:4000/api/movies') //receives data from new api
+        .then(response => {
+        this.setState({ movies: response.data.movies });
+        })
+        .catch(function (error) {
+        console.log(error);
+        })
+        }
 
     render() {
         return (

@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 export class Create extends React.Component {
 
@@ -36,10 +37,23 @@ export class Create extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
-        alert("Movie: " + this.state.Title + " "
-            + this.state.Year + " " +
-            this.state.Poster);
-    }
+        console.log(`button clicked
+        ${this.state.Title},
+        ${this.state.Year},
+        ${this.state.Poster}`);
+        this.setState({
+        Title: '',
+        Year: '',
+        Poster: ''
+        })
+        const newMovie = {
+        Title: this.state.Title,
+        Year: this.state.Year,
+        Poster: this.state.Poster
+        };
+        axios.post('http://localhost:4000/api/movies', newMovie)
+        .then(res => console.log(res.data));
+        }
 
     render() {
         return (
